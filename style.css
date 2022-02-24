@@ -1,0 +1,46 @@
+body{
+    background-color: greenyellow;
+}
+
+canvas{
+    border: ridge;
+    border-radius: 20px;
+    margin-top: 50px;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes example{
+    from{box-shadow: 1px 1px 38px blue;}
+    to{box-shadow: 1px 1px 38px yellow;}
+}
+
+p{
+    padding-top: 10px;
+    font-size: 25px;
+}
+
+#open_button{
+    float: right;
+}
+
+h1{
+    color: blue;
+    background-color: cornsilk;
+}
+
+#target{
+    color: crimson;
+}
+
+#score{
+    float: left;
+    color: black;
+    background-color: greenyellow;
+}
+
+#timer{
+    float: right;
+    color: black;
+    background-color: greenyellow;
+}
