@@ -7,13 +7,17 @@ timer_check="";
 drawn_sketch="";
 answer_holder="";
 score=0;
-function preload(){
 
+function preload(){
+    classifier=ml5.imageClassifier('DoodleNet');
 }
 
 function setup(){
    canvas=createCanvas(280,280);
    canvas.center();
+   background("white");
+   synth=window.speechSynthesis;
+   canvas.mouseReleased(classifyCanvas);
 }
 
 function draw(){
@@ -50,4 +54,21 @@ function check_sketch(){
         answer_holder="";
         update_canvas();
     }
+}
+
+function gotResults(error,results){
+    if(error){
+        console.error(error);
+    }
+    else{
+        console.log(results);
+        document.getElementById("name").innerHTML="Label: "+results[0].label;
+        document.getElementById("accuracy").innerHTML="Confidence: "+Math.round(results[0].confidence*100)+"%";
+        utterThis=new SpeechSynthesisUtterance(results[0].label);
+        synth.speak(utterThis);
+    }
+}
+
+function classifyCanvas(){
+    classifier.classify(canvas,gotResults);
 }
